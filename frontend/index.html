@@ -1,0 +1,120 @@
+<!-- <!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운세 보는 챗도지</title>
+</head>
+<body>
+    <button onclick="sendFortuneRequest()">요청하기</button>
+    <script>
+        async function sendFortuneRequest() {
+            const apiUrl = 'http://localhost:3000/fortuneTell';
+          
+            try {
+              const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  // Add any other headers if needed
+                },
+                // Add your request body here if needed
+                // body: JSON.stringify({ key: 'value' }),
+              });
+          
+              if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+              }
+          
+              const data = await response.json();
+              console.log('Fortune:', data);
+              return data;
+            } catch (error) {
+              console.error('Error fetching fortune:', error.message);
+            }
+          }
+          
+          // Example usage:
+          // Call the function and await the result
+          // const fortune = await getFortune();
+          
+    </script>
+    
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>운세 보는 챗도지</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        #chatBox {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 300px;
+            overflow-y: scroll;
+        }
+
+        #inputBox {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatBox"></div>
+    <div id="inputBox">
+        <input type="text" id="userInput" placeholder="메시지를 입력하세요">
+        <button onclick="sendMessage()">전송</button>
+        <button onclick="sendFortuneRequest()">운세 요청</button>
+    </div>
+
+    <script>
+        async function sendFortuneRequest() {
+            const apiUrl = 'http://localhost:3000/fortuneTell';
+          
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+              
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+              
+                const data = await response.json();
+                displayMessage(`운세: ${data.fortune}`);
+                return data;
+            } catch (error) {
+                console.error('Error fetching fortune:', error.message);
+            }
+        }
+
+        function sendMessage() {
+            const userInput = document.getElementById('userInput');
+            const message = userInput.value;
+            if (message.trim() !== '') {
+                displayMessage(`사용자: ${message}`);
+                userInput.value = '';
+            }
+        }
+
+        function displayMessage(message) {
+            const chatBox = document.getElementById('chatBox');
+            const messageElement = document.createElement('p');
+            messageElement.textContent = message;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight; // 스크롤을 항상 아래로 유지
+        }
+    </script>
+</body>
+</html>

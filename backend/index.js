@@ -2,7 +2,7 @@
 const OpenAI = require('openai');
 var cors = require('cors')
 const openai = new OpenAI({
-  apiKey: "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", // This is the default and can be omitted
+  apiKey: "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", // This is the default and can be omitted
 });
 
 const express = require('express')
@@ -27,10 +27,10 @@ app.post('/fortuneTell', async function(req, res) {
      
     //   console.log(Completion.choices[0]); 
     
-    let forturn = Completion.choices[0].message['content'];  //챗gpt의 답변 텍스트만 가져오고 싶다면
+    let fortune = Completion.choices[0].message['content'];  //챗gpt의 답변 텍스트만 가져오고 싶다면
 
-    console.log(forturn);
-    res.json({"assistant":forturn});
+    console.log(fortune);
+    res.json({"assistant":fortune});
 
 })
 app.listen(3000)

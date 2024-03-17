@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1 id="h1Title">WEB MASTER!!</h1>
+    <p class="pTitle">web에 대해 이해하기</p>
+    <p class="pTitle">나만의 홈페이지,만들기</p>
+
+    <ul>
+        <li class="webSub">HTML</li>
+        <li class="webSub">CSS</li>
+        <li class="webSub">JS</li>
+    </ul>
+
+
+
+
+    <script>
+
+        let Q1 = document.getElementById('h1Title').innerText;
+        console.log(Q1);
+
+        let Q2 = document.getElementsByClassName('pTitle')[1].innerText;
+        console.log(Q2);
+
+        for (let i = 0; i < document.getElementsByTagName('li').length; i++) {
+            let Q3 = document.getElementsByTagName('li')[i].innerText;
+            console.log(Q3);
+        }
+
+
+    </script>
+</body>
+
+</html>
